@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #333;
+}
+
+.App .drawer {
+  border: 3px solid #8f3b76;
+  box-shadow: 1px 1px 5px;
+}
+
+.App .controls {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  width: 900px;
+}
+
+.controls button {
+  width: 130px;
+  height: 45px;
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: capitalize;
+  cursor: pointer;
+  border: 0;
+  border-color: none;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px black;
+  background-color: #553772;
+  color: ghostwhite;
+}
