@@ -102,9 +102,10 @@ span.floating-controls .floating-button + .floating-button {
 }
 
 .brush-controls input[type=number] {
-  background-color: #8f3b76;
+  background-color: #FFF;
   text-align: center;
-  color: #FFF;
+  font-weight: bold;
+  color: #000;
   border: 0;
 }
 
