@@ -26,29 +26,13 @@
   box-shadow: 1px 1px 5px;
 }
 
-.App .controls {
-  margin-top: 50px;
+.App .floor-controls {
+  position: relative;
   display: flex;
   justify-content: space-between;
+  margin-top: 30px;
   width: 100%;
 }
-
-.controls button {
-  width: 130px;
-  height: 45px;
-  font-family: monospace;
-  font-size: 18px;
-  font-weight: bold;
-  text-transform: capitalize;
-  cursor: pointer;
-  border: 0;
-  border-color: none;
-  border-radius: 4px;
-  box-shadow: 1px 1px 2px black;
-  background-color: #553772;
-  color: ghostwhite;
-}
-
 
 #canvas-container {
   position: relative;
@@ -61,7 +45,7 @@
   margin-right: -70px;
 }
 
-span.floating-controls .floating-button {
+.floating-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,7 +55,10 @@ span.floating-controls .floating-button {
   border-radius: 50%;
   background-color: #553772;
   box-shadow: 1px 1px 3px black;
-  cursor: pointer;
+}
+
+.send { 
+  margin-right: -70px;
 }
 
 span.floating-controls .floating-button + .floating-button {
@@ -79,15 +66,50 @@ span.floating-controls .floating-button + .floating-button {
 }
 
 .floating-button:hover {
+  cursor: pointer;
   filter: brightness(0.9);
 }
 
 .floating-button:disabled {
-  cursor: none;
   filter: brightness(0.5);
 }
 
-span.floating-controls .floating-button svg {
+.floating-button svg {
   color: #FFF;
   font-size: 20px;
+}
+
+.brush-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #553772;
+  padding: 5px 25px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px black;
+}
+
+.brush-controls svg {
+  font-size: 20px;
+  color: #FFF;
+}
+
+.brush-controls input {
+  width: 50px;
+  height: 30px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px black;
+}
+
+.brush-controls input[type=number] {
+  background-color: #8f3b76;
+  text-align: center;
+  color: #FFF;
+  border: 0;
+}
+
+.brush-controls input[type=color] {
+  margin: 0 25px;
+  padding: 1px;
+  width: 27px;
 }
