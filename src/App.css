@@ -1,6 +1,16 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #252e42;
 }
 
 .App {
@@ -8,8 +18,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #333;
+  width: 700px;
 }
 
 .App .drawer {
@@ -21,7 +30,7 @@
   margin-top: 50px;
   display: flex;
   justify-content: space-between;
-  width: 900px;
+  width: 100%;
 }
 
 .controls button {
@@ -38,4 +47,47 @@
   box-shadow: 1px 1px 2px black;
   background-color: #553772;
   color: ghostwhite;
+}
+
+
+#canvas-container {
+  position: relative;
+}
+
+#canvas-container span.floating-controls {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: -70px;
+}
+
+span.floating-controls .floating-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border: 0;
+  border-radius: 50%;
+  background-color: #553772;
+  box-shadow: 1px 1px 3px black;
+  cursor: pointer;
+}
+
+span.floating-controls .floating-button + .floating-button {
+  margin-top: 20px;
+}
+
+.floating-button:hover {
+  filter: brightness(0.9);
+}
+
+.floating-button:disabled {
+  cursor: none;
+  filter: brightness(0.5);
+}
+
+span.floating-controls .floating-button svg {
+  color: #FFF;
+  font-size: 20px;
 }
