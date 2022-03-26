@@ -6,11 +6,19 @@
 
 #root {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-color: #252e42;
+}
+
+header {
+  font-family: 'Lobster', sans-serif;
+  font-size: 60px;
+  text-transform: capitalize;
+  color: ghostwhite;
+  margin-bottom: 50px;
 }
 
 .App {

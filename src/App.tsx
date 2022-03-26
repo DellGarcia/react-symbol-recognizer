@@ -1,4 +1,5 @@
 import { ChangeEventHandler, useRef, useState } from 'react'
+import { Toaster, toast } from 'react-hot-toast';
 import FormData from 'form-data';
 import CanvasDraw from 'react-canvas-draw';
 import resizeImage from './utils/resizeImage';  
@@ -17,14 +18,16 @@ function App() {
 
   async function submit() {
     //@ts-ignore
-    const image64 = canvasRef.current.getDataURL();
+    const image64 = canvasRef.current.getDataURL("image/jpeg", null, "#FFF");
 
-    // const blob = await fetch(image64).then(res => res.blob())
-
-    // const resizedImage = await resizeImage(blob);
+    const resultImage = await resizeImage(
+      await fetch(image64).then(res => res.blob())
+    );
 
     const form = new FormData();
-    form.append('image', image64);
+    form.append('image', resultImage);
+
+    let data: any; 
 
     try {
       const res = await api.post('/letter/predict', form, {
@@ -33,20 +36,23 @@ function App() {
         }
       });
 
-      console.log(res);
+      data = res.data;
+      console.log(data)
     } catch(err) {
       console.log(err);
+      return;
     }
 
-    // var uri = URL.createObjectURL(resizedImage);
-    
-    const fr = new FileReader();
-    //@ts-ignore
-    fr.readAsDataURL(blob);
-
-    fr.onload = (e) => {
-      console.log(e.target?.result)
-    }
+    toast(
+      () => (
+        <p>
+          Maybe you drew a Letter <strong>{`${data.prediction}`}</strong>
+        </p>
+      ),
+      {
+        duration: 4000,
+      }
+    );
   }
 
   function clear() {
@@ -70,6 +76,9 @@ function App() {
   
   return (
     <>
+      <header>
+        Symbol Recognizer
+      </header>
       <main className="App">
         <div id='canvas-container'>
           <CanvasDraw 
@@ -112,11 +121,25 @@ function App() {
               onChange={handleUpdateBrushSize}
             />
           </div>
-
           <button className='floating-button send' onClick={submit}>
             <FiSend />
           </button>
         </div>
+
+        <Toaster
+          toastOptions={{
+            style: {
+              background: '#553772',
+              color: '#FFF',
+              fontFamily: 'Poppins',
+              marginBottom: '20px',
+              padding: '10px',
+              lineHeight: '30px'
+            },
+          }}
+          position="bottom-center"
+          reverseOrder={false}
+        />
       </main>
     </>
   )
