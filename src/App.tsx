@@ -3,16 +3,18 @@ import { Toaster, toast } from 'react-hot-toast';
 import FormData from 'form-data';
 import CanvasDraw from 'react-canvas-draw';
 import resizeImage from './utils/resizeImage';  
+import { Save } from './models/Save'
 import api from './api';
 
-import { FiGrid, FiSend, FiTrash } from 'react-icons/fi';
-import { IoArrowUndo, IoBrushOutline, IoBrushSharp} from 'react-icons/io5'
+import { FiGrid, FiSave, FiSend, FiTrash, FiHardDrive } from 'react-icons/fi';
+import { IoArrowUndo, IoBrushSharp} from 'react-icons/io5'
 
 import './App.css'
+import { uid } from 'uid';
 
 function App() {
   const canvasRef = useRef({} as CanvasDraw);
-  const [showGrid, setShowGrid] = useState(true);
+  const [saves, setSaves] = useState(Array<Save>());
   const [brushRadius, setBrushRadius] = useState(12);
   const [brushColor, setBrushColor] = useState('#000'); 
 
@@ -27,40 +29,21 @@ function App() {
     const form = new FormData();
     form.append('image', resultImage);
 
-    let data: any; 
+    let res: any; 
 
     try {
-      const res = await api.post('/letter/predict', form, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+      res = await api.post('/letter/predict', form, {
+        headers: {'Content-Type': 'multipart/form-data'}
       });
-
-      data = res.data;
-      console.log(data)
     } catch(err) {
       console.log(err);
       return;
     }
 
     toast(
-      () => (
-        <p>
-          Maybe you drew a Letter <strong>{`${data.prediction}`}</strong>
-        </p>
-      ),
-      {
-        duration: 4000,
-      }
+      () => <p>Maybe you drew a Letter <strong>{`${res.data.prediction}`}</strong></p>,
+      {duration: 4000}
     );
-  }
-
-  function clear() {
-    canvasRef.current.clear();
-  }
-
-  function undo() {
-    canvasRef.current.undo();
   }
 
   function handleUpdateBrushSize(e: any) {
@@ -74,6 +57,17 @@ function App() {
       setBrushRadius(value);
   }
   
+  function createSave() {
+    const canvasSaveData = canvasRef.current.getSaveData();
+    setSaves([
+        ...saves, 
+        {
+          uid: uid(16), 
+          saveString: canvasSaveData
+        }
+      ]);
+  } 
+  
   return (
     <>
       <header>
@@ -81,6 +75,18 @@ function App() {
       </header>
       <main className="App">
         <div id='canvas-container'>
+          <aside className='save-list'>
+            <h2>Saves</h2>
+
+            <div className='items'>
+              {saves.length > 0 ? saves.map(save => <p>{save.uid}</p>) : (
+                <div className='hd-container'>
+                  <FiHardDrive className='hard-drive-icon'/>
+                  <p>Create a save and see them here</p>
+                </div>
+              )}
+            </div>
+          </aside>
           <CanvasDraw 
             ref={canvasRef}
             className='drawer' 
@@ -92,16 +98,20 @@ function App() {
             hideGrid={true}
           />
           <span className='floating-controls'>
-            <button className='floating-button' onClick={clear}>
+            <button className='floating-button' onClick={() => canvasRef.current.clear()}>
               <FiTrash />
             </button>
 
-            <button className='floating-button' onClick={undo}>
+            <button className='floating-button' onClick={() => canvasRef.current.undo()}>
               <IoArrowUndo />
             </button>
 
             <button className='floating-button' disabled>
               <FiGrid />
+            </button>
+
+            <button className='floating-button' onClick={createSave}>
+              <FiSave />
             </button>
           </span>
         </div>
