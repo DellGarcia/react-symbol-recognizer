@@ -1,0 +1,78 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+}
+
+.main .drawer {
+  border: 3px solid #8f3b76;
+  box-shadow: 1px 1px 5px;
+  width: 100%;
+}
+
+.main .floor-controls {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  width: 100%;
+}
+
+#canvas-container {
+  position: relative;
+  width: 700px;
+}
+
+.brush-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #553772;
+  padding: 5px 25px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px black;
+}
+
+.brush-controls svg {
+  font-size: 20px;
+  color: #FFF;
+}
+
+.brush-controls input {
+  width: 50px;
+  height: 30px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px black;
+}
+
+.brush-controls input[type=number] {
+  background-color: #FFF;
+  text-align: center;
+  font-weight: bold;
+  color: #000;
+  border: 0;
+}
+
+.brush-controls input[type=color] {
+  margin: 0 25px;
+  padding: 1px;
+  width: 27px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #553772;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #252e42;
+  border-radius: 4px;
+}

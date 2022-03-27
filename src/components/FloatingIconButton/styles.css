@@ -1,0 +1,40 @@
+span.floating-controls {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: -70px;
+}
+
+.floating-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border: 0;
+  border-radius: 50%;
+  background-color: #553772;
+  box-shadow: 1px 1px 3px black;
+}
+
+.send { 
+  margin-right: -70px;
+}
+
+span.floating-controls .floating-button + .floating-button {
+  margin-top: 20px;
+}
+
+.floating-button:hover {
+  cursor: pointer;
+  filter: brightness(0.9);
+}
+
+.floating-button:disabled {
+  filter: brightness(0.5);
+}
+
+.floating-button svg {
+  color: #FFF;
+  font-size: 20px;
+}
