@@ -1,11 +1,5 @@
-span.floating-controls {
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin-right: -70px;
-}
-
 .floating-button {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +15,7 @@ span.floating-controls {
   margin-right: -70px;
 }
 
-span.floating-controls .floating-button + .floating-button {
+.floating-button + .floating-button {
   margin-top: 20px;
 }
 
@@ -37,4 +31,26 @@ span.floating-controls .floating-button + .floating-button {
 .floating-button svg {
   color: #FFF;
   font-size: 20px;
+}
+
+.floating-button .tooltip {
+  position: absolute;
+  top: -25px;
+  right: -70px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 7px 10px;
+  font-family: 'Poppins';
+  color: #FFF;
+  width: 70px;
+  border-radius: 3px;
+  text-transform: capitalize;
+  display: none;
+}
+
+.floating-button:hover .tooltip {
+  display: block;
+}
+
+.tooltip-left {
+  left: -70px;
 }

@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { Save } from '../../models/Save';
 import { toast } from 'react-hot-toast';
 import { IoArrowUndo, IoBrushSharp} from 'react-icons/io5'
-import { FiGrid, FiSave, FiSend, FiTrash } from 'react-icons/fi';
+import { FiGrid, FiSave, FiSend, FiTrash, FiUpload } from 'react-icons/fi';
 import { FloatingIconButton } from '../FloatingIconButton';
 import { SaveList } from '../SaveList';
 import CanvasDraw from 'react-canvas-draw';
@@ -68,7 +68,10 @@ export function Canvas() {
   return (
     <main className="main">
         <div id='canvas-container'>
-          <SaveList saveList={saves}/>
+          <span className='floating-left-controls'>
+            <FloatingIconButton icon={FiSave} tooltip="save" onClick={createSave} disabled left/>
+            <FloatingIconButton icon={FiUpload} tooltip="upload" disabled left/>
+          </span>
           <CanvasDraw 
             ref={canvasRef}
             className='drawer' 
@@ -79,14 +82,10 @@ export function Canvas() {
             brushRadius={brushRadius}
             hideGrid={true}
           />
-          <span className='floating-controls'>
-            <FloatingIconButton icon={FiTrash} onClick={() => canvasRef.current.clear()} />
-
-            <FloatingIconButton icon={IoArrowUndo} onClick={() => canvasRef.current.undo()} />
-            
-            <FloatingIconButton icon={FiGrid} disabled />
-
-            <FloatingIconButton icon={FiSave} onClick={createSave} />
+          <span className='floating-right-controls'>
+            <FloatingIconButton icon={FiTrash} tooltip="erase" onClick={() => canvasRef.current.clear()} />
+            <FloatingIconButton icon={IoArrowUndo} tooltip="undo" onClick={() => canvasRef.current.undo()} />
+            <FloatingIconButton icon={FiGrid} disabled tooltip="grid" />
           </span>
         </div>
         <div className='floor-controls'>
@@ -105,7 +104,7 @@ export function Canvas() {
               onChange={handleUpdateBrushSize}
             />
           </div>
-          <FloatingIconButton icon={FiSend} className='floating-button send' onClick={submit} />
+          <FloatingIconButton icon={FiSend} tooltip="send" className='floating-button send' onClick={submit} />
         </div>
       </main>
   )

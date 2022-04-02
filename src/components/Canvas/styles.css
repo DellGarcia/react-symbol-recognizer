@@ -25,6 +25,20 @@
   width: 700px;
 }
 
+span.floating-right-controls {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: -70px;
+}
+
+span.floating-left-controls {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-left: -70px;
+}
+
 .brush-controls {
   display: flex;
   justify-content: center;
