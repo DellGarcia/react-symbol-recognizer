@@ -29,18 +29,24 @@ export function Canvas() {
     const form = new FormData();
     form.append('image', resultImage);
 
-    let res: any; 
+    const request = api.post('/letter/predict', form, {
+      headers: {'Content-Type': 'multipart/form-data'}
+    });
 
-    try {
-      res = await api.post('/letter/predict', form, {
-        headers: {'Content-Type': 'multipart/form-data'}
-      });
-    } catch(err) {}
-
-    toast(
-      () => <p>Maybe you drew a Letter <strong>{`${res.data.prediction}`}</strong></p>,
-      {duration: 4000}
-    );
+    toast.promise(request, {
+      loading: 'Loading',
+      success: (res) => <p>Maybe you drew a Letter <strong>{`${res.data.prediction}`}</strong></p>,
+      error: (err) => `deu ruim: ${err.toString()}`,
+    },
+    {
+      style: {
+        minWidth: '250px',
+      },
+      success: {
+        duration: 5000,
+        icon: '🔎',
+      },
+    })
   }
 
   function handleUpdateBrushSize(e: any) {

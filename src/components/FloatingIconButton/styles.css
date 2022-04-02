@@ -45,6 +45,7 @@
   border-radius: 3px;
   text-transform: capitalize;
   display: none;
+  user-select: none;
 }
 
 .floating-button:hover .tooltip {
