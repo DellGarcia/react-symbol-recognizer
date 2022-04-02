@@ -2,7 +2,9 @@
 
 It's a simple tool that allow draw one digit or caracter and send to an AI try to predict what you drew!
 
-![image](https://user-images.githubusercontent.com/49599535/160038201-4618535b-3d9d-4df1-9455-5fbe35b4656f.png)
+![image](https://user-images.githubusercontent.com/49599535/161361414-32895921-5152-442d-a1af-4bd099365d8e.png)
+
+See it working: <https://react-symbol-recognizer-dellgarcia.vercel.app>
 
 ## Functionalities :sparkles:
 
@@ -12,7 +14,11 @@ It's a simple tool that allow draw one digit or caracter and send to an AI try t
 - [x] Change brush size
 - [x] Change brush color
 - [x] Send image
-- [ ] Show predict
+- [x] Show predict
+- [ ] Enable/Disable Grid
+- [ ] Save a drawing
+- [ ] Load a drawing
+- [ ] Dark Mode
 
 ## How to run
 
