@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Save } from '../../models/Save';
 import { toast } from 'react-hot-toast';
 import { IoArrowUndo, IoBrushSharp} from 'react-icons/io5'
@@ -16,7 +16,31 @@ export function Canvas() {
   const canvasRef = useRef({} as CanvasDraw);
   const [saves, setSaves] = useState(Array<Save>());
   const [brushRadius, setBrushRadius] = useState(12);
-  const [brushColor, setBrushColor] = useState('#000'); 
+  const [brushColor, setBrushColor] = useState('#000');
+  const [clientWidth, setClientWidth] = useState(800);
+  const [clientHeight, setClientHeight] = useState(600);
+
+  useEffect(() => {
+    console.log(document.body.clientWidth);
+    setClientWidth(document.body.clientWidth / 2)
+  }, [document.body.clientWidth]);
+
+  useEffect(() => {
+    setClientHeight(document.body.clientHeight / 2)
+  }, [document.body.clientHeight]);
+
+  const resizeObserver = new ResizeObserver(entries => {
+    for (let entry of entries) {
+      if(entry.contentRect) {
+        setClientWidth(document.body.clientWidth / 2)
+        setClientHeight(document.body.clientHeight / 1.8)
+      }
+    }
+  
+    console.log('Size changed');
+  });
+  
+  resizeObserver.observe(document.body);
 
   async function submit() {
     //@ts-ignore
@@ -81,8 +105,8 @@ export function Canvas() {
           <CanvasDraw 
             ref={canvasRef}
             className='drawer' 
-            canvasWidth={700}
-            canvasHeight={500}
+            canvasWidth={clientWidth}
+            canvasHeight={clientHeight}
             backgroundColor='#fff'
             brushColor={brushColor}
             brushRadius={brushRadius}
@@ -96,7 +120,7 @@ export function Canvas() {
         </div>
         <div className='floor-controls'>
           <div className='brush-controls'>
-            <IoBrushSharp color='#000'/>
+            <IoBrushSharp color='#FFF'/>
             <input 
               type='color'  
               value={brushColor}

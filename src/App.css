@@ -4,19 +4,24 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #252e42;
+}
+
 #root {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100vw;
   height: 100vh;
-  background-color: #252e42;
 }
 
 header {
-  font-family: 'Lobster', sans-serif;
-  font-size: 60px;
+  font-family: 'Pacifico', sans-serif;
+  font-size: 3.8rem;
   text-transform: capitalize;
+  text-align: center;
   color: ghostwhite;
   margin-bottom: 50px;
 }

@@ -3,7 +3,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 700px;
+  width: 50vw;
+}
+
+#canvas-container {
+  position: relative;
+  width: 50vw;
 }
 
 .main .drawer {
@@ -20,10 +25,6 @@
   width: 100%;
 }
 
-#canvas-container {
-  position: relative;
-  width: 700px;
-}
 
 span.floating-right-controls {
   position: absolute;
@@ -62,6 +63,8 @@ span.floating-left-controls {
 }
 
 .brush-controls input[type=number] {
+  font-family: 'Itim';
+  font-size: 1.1rem;
   background-color: #FFF;
   text-align: center;
   font-weight: bold;

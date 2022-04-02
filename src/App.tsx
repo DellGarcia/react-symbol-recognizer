@@ -16,7 +16,8 @@ function App() {
           style: {
             background: '#553772',
             color: '#FFF',
-            fontFamily: 'Poppins',
+            fontFamily: 'Itim',
+            fontSize: '1.3rem',
             marginBottom: '20px',
             padding: '10px',
             lineHeight: '30px'
