@@ -15,12 +15,22 @@ See it working: <https://react-symbol-recognizer-dellgarcia.vercel.app>
 - [x] Change brush color
 - [x] Send image
 - [x] Show predict
+- [x] Simple Responsity 
 - [ ] Enable/Disable Grid
 - [ ] Save a drawing
 - [ ] Load a drawing
 - [ ] Dark Mode
 
-## How to run
+## How it works :mag_right:
+This app is a frontend client for a Caracter/Digit recognizer APIs made and maintened by [Arekushi](https://github.com/Arekushi).
+
+The goal of this app is make easy for an user draw a letter or digit and send to the API predict.  
+
+Here is the link for the APIs:
+- [Node API](https://github.com/Arekushi/char-recognizer-nodejs)
+- [Flask API](https://github.com/Arekushi/char-recognizer-flask) (Focused in recognition)
+
+## How to run :rocket:
 
 It's simple run, you will only need Node with npm or yarn installed and a navigator.
 
@@ -38,9 +48,9 @@ npm i
 
 This will install all we need to run
 
-#### Finaly run :rocket:
+#### Finaly run 
 
 ```
 npm run dev
 ```
-Access http://localhost:3000 to see the result
+Access http://localhost:3000 to see the result!
