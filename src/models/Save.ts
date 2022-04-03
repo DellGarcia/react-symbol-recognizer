@@ -1,4 +1,5 @@
 export type Save = {
-  uid: String,
-  saveString: String
+  uid: string;
+  name: string;
+  saveString: string;
 }

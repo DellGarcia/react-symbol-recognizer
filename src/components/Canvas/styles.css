@@ -90,6 +90,6 @@ span.floating-left-controls {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #252e42;
+  background: ghostwhite;
   border-radius: 4px;
 }

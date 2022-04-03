@@ -4,30 +4,27 @@ import { toast } from 'react-hot-toast';
 import { IoArrowUndo, IoBrushSharp} from 'react-icons/io5'
 import { FiGrid, FiSave, FiSend, FiTrash, FiUpload } from 'react-icons/fi';
 import { FloatingIconButton } from '../FloatingIconButton';
-import { SaveList } from '../SaveList';
+import { SaveModal } from '../SaveModal';
 import CanvasDraw from 'react-canvas-draw';
 import resizeImage from '../..//utils/resizeImage';  
 import api from '../../api';
 import { uid } from 'uid';
 
 import './styles.css';
+import { UploadModal } from '../UploadModal';
 
 export function Canvas() {
   const canvasRef = useRef({} as CanvasDraw);
-  const [saves, setSaves] = useState(Array<Save>());
+  const [isSMVisible, setIsSMVisible] = useState(false);
+  const [isLMVisible, setIsLMVisible] = useState(false);
   const [brushRadius, setBrushRadius] = useState(12);
   const [brushColor, setBrushColor] = useState('#000');
   const [clientWidth, setClientWidth] = useState(800);
   const [clientHeight, setClientHeight] = useState(600);
 
-  useEffect(() => {
-    console.log(document.body.clientWidth);
-    setClientWidth(document.body.clientWidth / 2)
-  }, [document.body.clientWidth]);
+  useEffect(() => setClientWidth(document.body.clientWidth / 2), [document.body.clientWidth]);
 
-  useEffect(() => {
-    setClientHeight(document.body.clientHeight / 2)
-  }, [document.body.clientHeight]);
+  useEffect(() => setClientHeight(document.body.clientHeight / 2), [document.body.clientHeight]);
 
   const resizeObserver = new ResizeObserver(entries => {
     for (let entry of entries) {
@@ -36,8 +33,6 @@ export function Canvas() {
         setClientHeight(document.body.clientHeight / 1.8)
       }
     }
-  
-    console.log('Size changed');
   });
   
   resizeObserver.observe(document.body);
@@ -83,59 +78,50 @@ export function Canvas() {
     else
       setBrushRadius(value);
   }
-  
-  function createSave() {
-    const canvasSaveData = canvasRef.current.getSaveData();
-    setSaves([
-        ...saves, 
-        {
-          uid: uid(16), 
-          saveString: canvasSaveData
-        }
-      ]);
-  } 
 
   return (
     <main className="main">
-        <div id='canvas-container'>
-          <span className='floating-left-controls'>
-            <FloatingIconButton icon={FiSave} tooltip="save" onClick={createSave} disabled left/>
-            <FloatingIconButton icon={FiUpload} tooltip="upload" disabled left/>
-          </span>
-          <CanvasDraw 
-            ref={canvasRef}
-            className='drawer' 
-            canvasWidth={clientWidth}
-            canvasHeight={clientHeight}
-            backgroundColor='#fff'
-            brushColor={brushColor}
-            brushRadius={brushRadius}
-            hideGrid={true}
+      <div id='canvas-container'>
+        <span className='floating-left-controls'>
+          <FloatingIconButton icon={FiSave} tooltip="save" onClick={() => setIsSMVisible(true)} left disabled/>
+          <FloatingIconButton icon={FiUpload} tooltip="upload" onClick={() => setIsLMVisible(true)} left disabled/>
+        </span>
+        <CanvasDraw 
+          ref={canvasRef}
+          className='drawer' 
+          canvasWidth={clientWidth}
+          canvasHeight={clientHeight}
+          backgroundColor='#fff'
+          brushColor={brushColor}
+          brushRadius={brushRadius}
+          hideGrid={true}
+        />
+        <span className='floating-right-controls'>
+          <FloatingIconButton icon={FiTrash} tooltip="erase" onClick={() => canvasRef.current.clear()} />
+          <FloatingIconButton icon={IoArrowUndo} tooltip="undo" onClick={() => canvasRef.current.undo()} />
+          <FloatingIconButton icon={FiGrid} disabled tooltip="grid" />
+        </span>
+      </div>
+      <div className='floor-controls'>
+        <div className='brush-controls'>
+          <IoBrushSharp color='#FFF'/>
+          <input 
+            type='color'  
+            value={brushColor}
+            onChange={(e) => setBrushColor(e.target.value)}
           />
-          <span className='floating-right-controls'>
-            <FloatingIconButton icon={FiTrash} tooltip="erase" onClick={() => canvasRef.current.clear()} />
-            <FloatingIconButton icon={IoArrowUndo} tooltip="undo" onClick={() => canvasRef.current.undo()} />
-            <FloatingIconButton icon={FiGrid} disabled tooltip="grid" />
-          </span>
+          <input 
+            type='number' 
+            min={0} 
+            max={20} 
+            value={brushRadius} 
+            onChange={handleUpdateBrushSize}
+          />
         </div>
-        <div className='floor-controls'>
-          <div className='brush-controls'>
-            <IoBrushSharp color='#FFF'/>
-            <input 
-              type='color'  
-              value={brushColor}
-              onChange={(e) => setBrushColor(e.target.value)}
-            />
-            <input 
-              type='number' 
-              min={0} 
-              max={20} 
-              value={brushRadius} 
-              onChange={handleUpdateBrushSize}
-            />
-          </div>
-          <FloatingIconButton icon={FiSend} tooltip="send" className='floating-button send' onClick={submit} />
-        </div>
-      </main>
+        <FloatingIconButton icon={FiSend} tooltip="send" className='floating-button send' onClick={submit} />
+      </div>
+      <SaveModal show={isSMVisible} setShow={setIsSMVisible} canvasRef={canvasRef}/>
+      <UploadModal show={isLMVisible} setShow={setIsLMVisible} canvasRef={canvasRef}/>
+    </main>
   )
 }

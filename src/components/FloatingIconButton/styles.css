@@ -37,20 +37,23 @@
   position: absolute;
   top: -28px;
   right: -82px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ghostwhite;
   padding: 7px 10px;
   font-family: 'Itim';
   font-size: 1.2rem;
-  color: #FFF;
+  color: #000;
   width: 80px;
   border-radius: 3px;
   text-transform: capitalize;
-  display: none;
+  text-align: center;
   user-select: none;
+  display: none;
+  padding: 5px 10px;
 }
 
 .floating-button:hover .tooltip {
-  display: block;
+  display: inline;
+  opacity: auto;
 }
 
 .tooltip-left {

@@ -8,6 +8,18 @@ body {
   background-color: #252e42;
 }
 
+p {
+  margin-bottom: auto;
+}
+
+body, p, button, input, textarea {
+  font-family: 'Itim';
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Itim';
+}
+
 #root {
   display: flex;
   flex-direction: column;

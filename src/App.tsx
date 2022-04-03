@@ -2,6 +2,7 @@ import { Canvas } from './components/Canvas';
 import { Toaster } from 'react-hot-toast';
 import FormData from 'form-data';
 
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 
 function App() {

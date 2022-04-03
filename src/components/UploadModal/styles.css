@@ -1,0 +1,51 @@
+.save-modal-header, .save-modal-body, .save-modal-footer {
+  background-color: #252e42;
+  border: 0;
+  color: #FFF;
+  padding: 10px 50px;
+}
+
+.save-modal-header .modal-title {
+  font-size: 2rem;
+}
+
+.save-modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.save-modal-body select {
+  font-size: 1.3rem;
+  list-style: none;
+  height: 50px;
+}
+
+.save-modal-body ul li {
+  height: 40px;
+  font-size: 1.1rem;
+  border: 0;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+/* .save-modal-body .invalid {
+  color: red;
+} */
+
+.save-modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.save-modal-footer button {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  background-color: #553772;
+  border: 0;
+  box-shadow: 1px 1px 1px solid black;
+}
+
+.save-modal-footer button:hover {
+  background-color: #553772;
+  filter: brightness(0.8);
+}
