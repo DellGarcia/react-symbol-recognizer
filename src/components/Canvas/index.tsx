@@ -1,17 +1,15 @@
 import { useRef, useState, useEffect } from 'react'
-import { Save } from '../../models/Save';
 import { toast } from 'react-hot-toast';
 import { IoArrowUndo, IoBrushSharp} from 'react-icons/io5'
 import { FiGrid, FiSave, FiSend, FiTrash, FiUpload } from 'react-icons/fi';
 import { FloatingIconButton } from '../FloatingIconButton';
 import { SaveModal } from '../SaveModal';
+import { UploadModal } from '../UploadModal';
 import CanvasDraw from 'react-canvas-draw';
 import resizeImage from '../..//utils/resizeImage';  
 import api from '../../api';
-import { uid } from 'uid';
 
 import './styles.css';
-import { UploadModal } from '../UploadModal';
 
 export function Canvas() {
   const canvasRef = useRef({} as CanvasDraw);
