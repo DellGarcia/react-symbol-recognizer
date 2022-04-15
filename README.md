@@ -4,7 +4,7 @@ It's a simple tool that allow draw one digit or caracter and send to an AI try t
 
 ![image](https://user-images.githubusercontent.com/49599535/161361414-32895921-5152-442d-a1af-4bd099365d8e.png)
 
-See it working: <https://react-symbol-recognizer-dellgarcia.vercel.app>
+See it working: <https://react-symbol-recognizer.vercel.app/>
 
 ## Functionalities :sparkles:
 
